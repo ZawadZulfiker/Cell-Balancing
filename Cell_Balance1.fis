@@ -1,0 +1,58 @@
+[System]
+Name='Cell_Balance1'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=16
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='soc_df'
+Range=[0 50]
+NumMFs=4
+MF1='L':'dsigmf',[1.529 -4.69 0.95 4]
+MF2='M':'gaussmf',[2.15 7.5]
+MF3='H':'gaussmf',[2.15 12.5]
+MF4='VH':'sigmf',[0.75 16]
+
+[Input2]
+Name='soc_avg'
+Range=[0 100]
+NumMFs=4
+MF1='VL':'dsigmf',[0.3059 -23.55 0.275 20]
+MF2='L':'gaussmf',[8.25 30]
+MF3='M':'gaussmf',[8.25 50]
+MF4='H':'sigmf',[0.275 60]
+
+[Output1]
+Name='duty_cycle'
+Range=[0.5 0.65]
+NumMFs=5
+MF1='L':'gaussmf',[0.0135 0.5]
+MF2='ML':'gaussmf',[0.0135 0.5375]
+MF3='M':'gaussmf',[0.0135 0.575]
+MF4='MH':'gaussmf',[0.0135 0.6125]
+MF5='H':'gaussmf',[0.0135 0.65]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+1 3, 3 (1) : 1
+1 4, 4 (1) : 1
+2 1, 2 (1) : 1
+2 2, 3 (1) : 1
+2 3, 3 (1) : 1
+2 4, 4 (1) : 1
+3 1, 3 (1) : 1
+3 2, 4 (1) : 1
+3 3, 4 (1) : 1
+3 4, 5 (1) : 1
+4 1, 4 (1) : 1
+4 2, 5 (1) : 1
+4 3, 5 (1) : 1
+4 4, 5 (1) : 1
